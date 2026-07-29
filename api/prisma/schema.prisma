@@ -21,6 +21,7 @@ model column_catalog {
   invalid_values  Int       @db.SmallInt
   null_percentage Float     @db.Real
   dataset_id      BigInt
+  column_name     String    @db.VarChar
   datasets        datasets  @relation(fields: [dataset_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
 }
 
