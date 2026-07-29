@@ -13,5 +13,8 @@ export async function findById(id: bigint) {
     where: {
       id,
     },
+    include: {
+      column_catalog: true,
+    },
   });
 }
