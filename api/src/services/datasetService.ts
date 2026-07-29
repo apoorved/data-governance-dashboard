@@ -7,3 +7,11 @@ export async function findAll() {
     },
   });
 }
+
+export async function findById(id: bigint) {
+  return prisma.datasets.findUnique({
+    where: {
+      id,
+    },
+  });
+}

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { uploadDataset } from "../services/uploadService";
-import { findAll } from "../services/datasetService";
+import { findAll, findById } from "../services/datasetService";
 import { serializeBigInt } from "../utils/helper";
 
 export async function upload(req: Request, res: Response) {
@@ -33,6 +33,21 @@ export async function getDatasets(_req: Request, res: Response) {
 
     return res.status(500).json({
       message: "Failed to retrieve datasets.",
+    });
+  }
+}
+
+export async function getDatasetByID( req: Request<{ id: string }>, res: Response) {
+   try {
+    const { id } = req.params;
+    const datasets = await findById(BigInt(id));
+
+    return res.status(201).json(serializeBigInt(datasets));
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Failed to retrieve dataset.",
     });
   }
 }
