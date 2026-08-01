@@ -11,6 +11,7 @@ RUN npm ci --omit=dev
 # Copy Prisma schema and source code BEFORE build
 COPY prisma ./prisma/
 COPY src ./src/
+COPY generated ./generated/
 COPY tsconfig.json tsup.config.ts ./
 
 # Build the application
