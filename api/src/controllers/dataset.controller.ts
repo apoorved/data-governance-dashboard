@@ -29,6 +29,8 @@ export async function getDatasets(_req: Request, res: Response) {
 
     return res.status(201).json(serializeBigInt(datasets));
   } catch (error) {
+    console.log(process.env.DATABASE_URL, "yy");
+    console.log("Errz", error);
     console.error(error);
 
     return res.status(500).json({
